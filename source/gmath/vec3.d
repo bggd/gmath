@@ -94,6 +94,10 @@ T length2(T)(ref Vec3!T v)
 
 Vec3!T normalize(T)(ref Vec3!T v)
 {
+    if (!v[0] && !v[1] && !v[2]) {
+      return v;
+    }
+
     Vec3!T norm;
     T len = 1.0 / length(v);
     for (int i = 0; i < 3; ++i)
