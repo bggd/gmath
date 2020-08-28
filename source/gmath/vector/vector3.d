@@ -2,7 +2,7 @@ module gmath.vec3;
 
 import std.math;
 
-struct Vec3(T)
+struct Vector3(T)
 {
     union
     {
@@ -32,9 +32,9 @@ struct Vec3(T)
     }
 }
 
-Vec3!T add(T)(ref Vec3!T a, ref Vec3!T b)
+Vector3!T add(T)(ref Vector3!T a, ref Vector3!T b)
 {
-    Vec3!T v;
+    Vector3!T v;
     for (int i = 0; i < 3; ++i)
     {
         v[i] = a[i] + b[i];
@@ -42,9 +42,9 @@ Vec3!T add(T)(ref Vec3!T a, ref Vec3!T b)
     return v;
 }
 
-Vec3!T sub(T)(ref Vec3!T a, ref Vec3!T b)
+Vector3!T sub(T)(ref Vector3!T a, ref Vector3!T b)
 {
-    Vec3!T v;
+    Vector3!T v;
     for (int i = 0; i < 3; ++i)
     {
         v[i] = a[i] - b[i];
@@ -52,9 +52,9 @@ Vec3!T sub(T)(ref Vec3!T a, ref Vec3!T b)
     return v;
 }
 
-Vec3!T mul(T)(ref Vec3!T a, ref Vec3!T b)
+Vector3!T mul(T)(ref Vector3!T a, ref Vector3!T b)
 {
-    Vec3!T v;
+    Vector3!T v;
     for (int i = 0; i < 3; ++i)
     {
         v[i] = a[i] * b[i];
@@ -62,9 +62,9 @@ Vec3!T mul(T)(ref Vec3!T a, ref Vec3!T b)
     return v;
 }
 
-Vec3!T mulScalar(T)(ref Vec3!T a, T scalar)
+Vector3!T mulScalar(T)(ref Vector3!T a, T scalar)
 {
-    Vec3!T v;
+    Vector3!T v;
     for (int i = 0; i < 3; ++i)
     {
         v[i] = a[i] * scalar;
@@ -72,7 +72,7 @@ Vec3!T mulScalar(T)(ref Vec3!T a, T scalar)
     return v;
 }
 
-T dot(T)(ref Vec3!T a, ref Vec3!T b)
+T dot(T)(ref Vector3!T a, ref Vector3!T b)
 {
     T n = 0;
     for (int i = 0; i < 3; ++i)
@@ -82,23 +82,23 @@ T dot(T)(ref Vec3!T a, ref Vec3!T b)
     return n;
 }
 
-T length(T)(ref Vec3!T v)
+T length(T)(ref Vector3!T v)
 {
     return sqrt(dot(v, v));
 }
 
-T length2(T)(ref Vec3!T v)
+T length2(T)(ref Vector3!T v)
 {
     return dot(v, v);
 }
 
-Vec3!T normalize(T)(ref Vec3!T v)
+Vector3!T normalize(T)(ref Vector3!T v)
 {
     if (!v[0] && !v[1] && !v[2]) {
       return v;
     }
 
-    Vec3!T norm;
+    Vector3!T norm;
     T len = 1.0 / length(v);
     for (int i = 0; i < 3; ++i)
     {
@@ -107,9 +107,9 @@ Vec3!T normalize(T)(ref Vec3!T v)
     return norm;
 }
 
-Vec3!T cross(T)(ref Vec3!T a, ref Vec3!T b)
+Vector3!T cross(T)(ref Vector3!T a, ref Vector3!T b)
 {
-    Vec3!T v;
+    Vector3!T v;
     v[0] = a[1] * b[2] - a[2] * b[1];
     v[1] = a[2] * b[0] - a[0] * b[2];
     v[2] = a[0] * b[1] - a[1] * b[0];
@@ -118,7 +118,7 @@ Vec3!T cross(T)(ref Vec3!T a, ref Vec3!T b)
 
 unittest
 {
-    alias vec3i = Vec3!int;
+    alias vec3i = Vector3!int;
 
     vec3i defaultInt;
     assert(defaultInt[0] == 0);
@@ -135,7 +135,7 @@ unittest
     assert(ctorArray[1] == 1);
     assert(ctorArray[2] == 2);
 
-    alias vec3f = Vec3!float;
+    alias vec3f = Vector3!float;
 
     vec3f defaultFloat;
     assert(isNaN(defaultFloat[0]));
