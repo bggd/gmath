@@ -6,7 +6,7 @@ struct Vec3(T)
 {
     union
     {
-        T[3] array = [0, 0, 0];
+        T[3] array;
         struct
         {
             T x;
@@ -120,10 +120,10 @@ unittest
 {
     alias vec3i = Vec3!int;
 
-    vec3i defaultValue;
-    assert(defaultValue[0] == 0);
-    assert(defaultValue[1] == 0);
-    assert(defaultValue[2] == 0);
+    vec3i defaultInt;
+    assert(defaultInt[0] == 0);
+    assert(defaultInt[1] == 0);
+    assert(defaultInt[2] == 0);
 
     auto ctor = vec3i(0, 1, 2);
     assert(ctor[0] == 0);
@@ -134,4 +134,11 @@ unittest
     assert(ctorArray[0] == 0);
     assert(ctorArray[1] == 1);
     assert(ctorArray[2] == 2);
+
+    alias vec3f = Vec3!float;
+
+    vec3f defaultFloat;
+    assert(isNaN(defaultFloat[0]));
+    assert(isNaN(defaultFloat[1]));
+    assert(isNaN(defaultFloat[2]));
 }
