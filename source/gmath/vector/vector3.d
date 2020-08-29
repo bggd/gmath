@@ -1,4 +1,4 @@
-module gmath.vector3;
+module gmath.vector.vector3;
 
 import std.math;
 
